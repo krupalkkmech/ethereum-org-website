@@ -26,27 +26,43 @@ const Item = styled(Link)`
 
 const ItemTitle = styled.div``
 
-const ItemDesc = styled.p`
+const ItemDesc = styled.div`
   margin-bottom: 0;
   opacity: 0.6;
 `
 
 const LeftContainer = styled.div`
   display: flex;
+  flex-direction: column;
   width: 75%;
   margin-right: 2rem;
 `
-// TODO create generalized CardList / TableCard
-// TODO prop if ordered list or unordered
-const CardList = ({ idx, link, title, description }) => {
+const RightContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 25%;
+  margin-right: 1rem;
+  flex-wrap: wrap;
+`
+
+// content array
+const CardList = ({ content }) => {
   return (
     <Table>
-      <Item key={idx} to={link}>
-        <LeftContainer>
-          <ItemTitle>{title}</ItemTitle>
-          <ItemDesc>{description}</ItemDesc>
-        </LeftContainer>
-      </Item>
+      {content.map((listItem, idx) => {
+        const { title, description, caption, link } = listItem
+        return (
+          <Item key={idx} to={link}>
+            <LeftContainer>
+              <ItemTitle>{title}</ItemTitle>
+              <ItemDesc>{description}</ItemDesc>
+            </LeftContainer>
+            <RightContainer>
+              <ItemDesc>{caption}</ItemDesc>
+            </RightContainer>
+          </Item>
+        )
+      })}
     </Table>
   )
 }
