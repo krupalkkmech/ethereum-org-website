@@ -88,6 +88,8 @@ const lightThemeColors = Object.assign({}, baseColors, lightColors)
 const darkThemeColors = Object.assign({}, baseColors, darkColors)
 
 const theme = {
+  isDark: false, // Overwritten in Object.assign
+  colors: {}, // Overwritten in Object.assign
   fontSizes: {
     // based on typical browser default font size of 16px
     xs: "0.75rem", // 12px
@@ -106,12 +108,18 @@ const theme = {
   },
 }
 
-export const lightTheme = Object.assign({ isDark: false }, theme, {
-  colors: lightThemeColors,
-})
-export const darkTheme = Object.assign({ isDark: true }, theme, {
-  colors: darkThemeColors,
-})
+export const lightTheme = Object.assign(
+  {},
+  theme,
+  { isDark: false },
+  { colors: lightThemeColors }
+)
+export const darkTheme = Object.assign(
+  {},
+  theme,
+  { isDark: true },
+  { colors: darkThemeColors }
+)
 
 // Dynamic global styles
 // Unfortunately Prettier doesn't format `createGlobalStyle`
