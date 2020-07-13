@@ -1,11 +1,22 @@
 import styled from "styled-components"
 import { Mixins } from "./Theme"
 
+export const Page = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  margin: 4rem auto 0;
+`
+
+// TODO merge these w/ standard page
 export const PageContainer = styled.div`
-  width: 85vw;
-  max-width: ${(props) => props.theme.breakpoints.xl};
+  width: 100%;
   margin: 0 auto;
   padding-top: 6rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     padding-top: 10rem;
   }

@@ -13,8 +13,11 @@ const StyledCard = styled.div`
   );
   padding: 1.5rem;
   margin: 1rem;
-  margin-top: 10rem;
+  margin-top: 8rem;
   border-radius: 4px;
+  @media (max-width: ${(props) => props.theme.breakpoints.l}) {
+    margin-bottom: 4rem;
+  }
 `
 
 const Description = styled.p`
@@ -24,31 +27,31 @@ const Description = styled.p`
 `
 
 const Image = styled(Img)`
-  align-self: center;
-  width: 100%;
-  max-width: ${(props) => props.maxImageWidth};
   margin-top: -10rem;
-  margin-bottom: 1.5rem;
+  align-self: center;
+  max-width: 263px;
+  min-height: 200px;
 `
 
-const Callout = ({
-  image,
-  maxImageWidth,
-  title,
-  description,
-  children,
-  className,
-}) => {
+const Content = styled.div`
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`
+
+const Callout = ({ image, title, description, children, className }) => {
   return (
     <StyledCard className={className}>
-      <Image
-        fluid={image}
-        alt={`${title} image`}
-        maxImageWidth={maxImageWidth}
-      />
-      <h3>{title}</h3>
-      <Description>{description}</Description>
-      {children}
+      <Image fixed={image} alt={`${title} image`} />
+      <Content>
+        <div>
+          <h3>{title}</h3>
+          <Description>{description}</Description>
+        </div>
+        {children}
+      </Content>
     </StyledCard>
   )
 }
