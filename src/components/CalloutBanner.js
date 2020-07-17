@@ -11,34 +11,52 @@ const StyledCard = styled.div`
     rgba(134, 168, 231, 0.2) 58.46%,
     rgba(145, 234, 228, 0.2) 97.05%
   );
-  padding: 1.5rem;
+  padding: 3rem;
   margin: 1rem;
-  margin-top: 10rem;
+  margin-top: 6rem;
   margin-bottom: 10rem;
   border-radius: 4px;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.l}) {
+    flex-direction: column;
+    margin-bottom: 1rem;
+    margin: 4rem 2rem;
+  }
 `
 
 const Content = styled.div`
-  padding-left: 3rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  width: 90%;
+  padding-left: 5rem;
+  flex: 1 0 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @media (max-width: ${(props) => props.theme.breakpoints.l}) {
+    padding-left: 1rem;
+    flex-direction: column;
+    width: 100%;
+  }
 `
 
 const Description = styled.p`
   font-size: 20px;
+  width: 90%;
   line-height: 140%;
   color: ${(props) => props.theme.colors.text200};
 `
 
 const Image = styled(Img)`
+  align-self: center; /* prevents crop */
   width: 100%;
-  max-width: ${(props) => props.maxImageWidth};
+  max-width: ${(props) => `${props.maxImageWidth}px`};
   margin-top: -6rem;
   margin-bottom: -6rem;
+  @media (max-width: ${(props) => props.theme.breakpoints.l}) {
+    margin-bottom: 0rem;
+    margin-top: -6rem;
+  }
 `
 
-const Callout = ({
+const CalloutBanner = ({
   image,
   maxImageWidth,
   title,
@@ -49,7 +67,7 @@ const Callout = ({
   return (
     <StyledCard className={className}>
       <Image
-        fixed={image}
+        fluid={image}
         alt={`${title} image`}
         maxImageWidth={maxImageWidth}
       />
@@ -62,4 +80,4 @@ const Callout = ({
   )
 }
 
-export default Callout
+export default CalloutBanner
